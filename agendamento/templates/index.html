@@ -1,0 +1,271 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXELFLOW - Cadastro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+<body>
+    
+    <header class="header-projeto">
+        <img src="{% static 'img/nj3.png' %}" alt="Mascote" class="mascote">
+        <h1 class="titulo-projeto">PROJETO INTEGRADOR</h1>
+    </header>
+
+    <main class="container">
+        <div class="card-flutuante">
+            <h1 class="boas-vindas">Bem-vindo!</h1>
+            <h2 class="subtitulo">Cadastre-se</h2>
+            <form action="/salvar/" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="tela" id="tela">
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <label for="primeiro_nome" class="form-label">Primeiro Nome</label>
+                        <input type="text" id="primeiro_nome" name="primeiro_nome" class="form-control" placeholder="Seu nome" required autocomplete="off" readonly>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="sobrenome" class="form-label">Sobrenome</label>
+                        <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Seu sobrenome" required autocomplete="off" readonly>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="data_nascimento_texto" class="form-label">Data de nascimento</label>
+                        <input type="text" id="data_nascimento_texto" class="form-control" placeholder="DD/MM/AAAA" maxlength="10" required autocomplete="off" readonly>
+                        <input type="hidden" id="data_nascimento" name="data_nascimento">
+                    </div>
+                </div>
+                <fieldset class="mt-2 border-0 p-0">
+                    <legend class="text-center h5 w-100 mb-3 mt-2">Você é?</legend>
+                    <div class="row">
+                        <div class="col-6 col-md-4"><div class="form-check">
+                            <input class="form-check-input" type="radio" id="tipo_adm" name="tipo_usuario" value="Administracao" required>
+                            <label class="form-check-label" for="tipo_adm">Administração</label>
+                        </div></div>
+                        <div class="col-6 col-md-4"><div class="form-check">
+                            <input class="form-check-input" type="radio" id="tipo_masso" name="tipo_usuario" value="Massoterapia">
+                            <label class="form-check-label" for="tipo_masso">Massoterapia</label>
+                        </div></div>
+                        <div class="col-6 col-md-4"><div class="form-check">
+                            <input class="form-check-input" type="radio" id="tipo_ti" name="tipo_usuario" value="Tecnico Informatica">
+                            <label class="form-check-label" for="tipo_ti">Téc. Informática</label>
+                        </div></div>
+                        <div class="col-6 col-md-4"><div class="form-check">
+                            <input class="form-check-input" type="radio" id="tipo_vis" name="tipo_usuario" value="Visitante">
+                            <label class="form-check-label" for="tipo_vis">Visitante</label>
+                        </div></div>
+                        <div class="col-6 col-md-4"><div class="form-check">
+                            <input class="form-check-input" type="radio" id="tipo_func" name="tipo_usuario" value="Funcionario">
+                            <label class="form-check-label" for="tipo_func">Funcionário</label>
+                        </div></div>
+                        <div class="col-6 col-md-4"><div class="form-check">
+                            <input class="form-check-input" type="radio" id="tipo_seg" name="tipo_usuario" value="Seguranca do Trabalho">
+                            <label class="form-check-label" for="tipo_seg">Seg. Trabalho</label>
+                        </div></div>
+                    </div>
+                </fieldset>
+                <div class="mt-4">
+                    <button type="submit" class="btn w-100" style="height: 52px; font-size: 16px; font-weight: 700; border-radius: 12px; background-color: #111; color: #fff; border: none;">Continuar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <div id="tecladoVirtual">
+        <div class="kb-keyboard">
+            <div class="kb-row">
+                <button type="button" class="kb-tecla">1</button>
+                <button type="button" class="kb-tecla">2</button>
+                <button type="button" class="kb-tecla">3</button>
+                <button type="button" class="kb-tecla">4</button>
+                <button type="button" class="kb-tecla">5</button>
+                <button type="button" class="kb-tecla">6</button>
+                <button type="button" class="kb-tecla">7</button>
+                <button type="button" class="kb-tecla">8</button>
+                <button type="button" class="kb-tecla">9</button>
+                <button type="button" class="kb-tecla">0</button>
+                <button type="button" class="kb-del" id="apagar">⌫ DEL</button>
+            </div>
+            <div class="kb-row">
+                <button type="button" class="kb-tecla">q</button>
+                <button type="button" class="kb-tecla">w</button>
+                <button type="button" class="kb-tecla">e</button>
+                <button type="button" class="kb-tecla">r</button>
+                <button type="button" class="kb-tecla">t</button>
+                <button type="button" class="kb-tecla">y</button>
+                <button type="button" class="kb-tecla">u</button>
+                <button type="button" class="kb-tecla">i</button>
+                <button type="button" class="kb-tecla">o</button>
+                <button type="button" class="kb-tecla">p</button>
+            </div>
+            <div class="kb-row">
+                <button type="button" class="kb-tecla">a</button>
+                <button type="button" class="kb-tecla">s</button>
+                <button type="button" class="kb-tecla">d</button>
+                <button type="button" class="kb-tecla">f</button>
+                <button type="button" class="kb-tecla">g</button>
+                <button type="button" class="kb-tecla">h</button>
+                <button type="button" class="kb-tecla">j</button>
+                <button type="button" class="kb-tecla">k</button>
+                <button type="button" class="kb-tecla">l</button>
+            </div>
+            <div class="kb-row">
+                <button type="button" class="kb-sft" id="shift-esq">⇧ SHIFT</button>
+                <button type="button" class="kb-tecla">z</button>
+                <button type="button" class="kb-tecla">x</button>
+                <button type="button" class="kb-tecla">c</button>
+                <button type="button" class="kb-tecla">v</button>
+                <button type="button" class="kb-tecla">b</button>
+                <button type="button" class="kb-tecla">n</button>
+                <button type="button" class="kb-tecla">m</button>
+            </div>
+            <div class="kb-row">
+                <button type="button" class="kb-spc" id="espaco">ESPAÇO</button>
+                <button type="button" class="kb-del" id="fecharTeclado">✕ FECHAR</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById("tela").value = params.get("tela") || "";
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var teclas       = document.querySelectorAll("#tecladoVirtual .kb-tecla");
+            var deleteBtn    = document.getElementById("apagar");
+            var shiftEsq     = document.getElementById("shift-esq");
+            var spaceBtn     = document.getElementById("espaco");
+            var fecharBtn    = document.getElementById("fecharTeclado");
+            var teclado      = document.getElementById("tecladoVirtual");
+            var primeiroNome = document.getElementById("primeiro_nome");
+            var sobrenome    = document.getElementById("sobrenome");
+            var dataTexto    = document.getElementById("data_nascimento_texto");
+            var dataHidden   = document.getElementById("data_nascimento");
+            var formulario   = document.querySelector("form");
+            var campoAtivo   = null;
+            var shiftAtivo   = false;
+
+            var isMobile = window.innerWidth <= 768;
+
+            if (isMobile) {
+                primeiroNome.removeAttribute("readonly");
+                sobrenome.removeAttribute("readonly");
+                dataTexto.removeAttribute("readonly");
+                dataTexto.setAttribute("placeholder", "DD/MM/AA");
+                primeiroNome.setAttribute("placeholder", "Primeiro nome");
+                sobrenome.setAttribute("placeholder", "Sobrenome");
+            }
+
+            function ligarShift() {
+                shiftAtivo = true;
+                teclas.forEach(function(btn) {
+                    if (isNaN(btn.textContent.trim())) btn.textContent = btn.textContent.trim().toUpperCase();
+                });
+                shiftEsq.classList.add("ativo");
+            }
+
+            function desligarShift() {
+                shiftAtivo = false;
+                teclas.forEach(function(btn) {
+                    if (isNaN(btn.textContent.trim())) btn.textContent = btn.textContent.trim().toLowerCase();
+                });
+                shiftEsq.classList.remove("ativo");
+            }
+
+            function abrirTeclado(campo) {
+                if (isMobile) return;
+
+                campoAtivo = campo;
+                teclado.style.display = "block";
+                document.body.classList.add("teclado-aberto");
+                
+                if (campo !== dataTexto && campo.value.length === 0) {
+                    ligarShift();
+                } else {
+                    desligarShift();
+                }
+
+                setTimeout(function() { campo.scrollIntoView({ behavior: "smooth", block: "center" }); }, 100);
+            }
+
+            function formatarData(digitos) {
+                digitos = digitos.replace(/\D/g, "").slice(0, 8);
+                if (digitos.length > 4) return digitos.slice(0,2) + "/" + digitos.slice(2,4) + "/" + digitos.slice(4);
+                if (digitos.length > 2) return digitos.slice(0,2) + "/" + digitos.slice(2);
+                return digitos;
+            }
+
+            [primeiroNome, sobrenome, dataTexto].forEach(function(campo) {
+                campo.addEventListener("click", function() { abrirTeclado(campo); });
+                campo.addEventListener("focus", function() { abrirTeclado(campo); });
+            });
+
+            teclas.forEach(function(btn) {
+                btn.addEventListener("click", function() {
+                    if (!campoAtivo) return;
+                    var char = btn.textContent.trim();
+                    if (campoAtivo === dataTexto) {
+                        if (!/\d/.test(char)) return;
+                        dataTexto.value = formatarData(dataTexto.value.replace(/\D/g,"") + char);
+                    } else {
+                        campoAtivo.value += shiftAtivo ? char.toUpperCase() : char.toLowerCase();
+                        if (shiftAtivo) desligarShift();
+                    }
+                    campoAtivo.focus();
+                });
+            });
+
+            deleteBtn.addEventListener("click", function() {
+                if (!campoAtivo) return;
+                if (campoAtivo === dataTexto) {
+                    dataTexto.value = formatarData(dataTexto.value.replace(/\D/g,"").slice(0,-1));
+                } else {
+                    campoAtivo.value = campoAtivo.value.slice(0,-1);
+                    if (campoAtivo.value.length === 0) {
+                        ligarShift();
+                    }
+                }
+                campoAtivo.focus();
+            });
+
+            spaceBtn.addEventListener("click", function() {
+                if (!campoAtivo || campoAtivo === dataTexto) return;
+                campoAtivo.value += " ";
+                campoAtivo.focus();
+            });
+
+            shiftEsq.addEventListener("click", function() { shiftAtivo ? desligarShift() : ligarShift(); });
+
+            fecharBtn.addEventListener("click", function() {
+                teclado.style.display = "none";
+                document.body.classList.remove("teclado-aberto");
+                if (campoAtivo) campoAtivo.blur();
+                campoAtivo = null;
+            });
+
+            dataTexto.addEventListener('input', function(e) {
+                if(isMobile) {
+                    let valor = e.target.value.replace(/\D/g,"");
+                    e.target.value = formatarData(valor);
+                }
+            });
+
+            formulario.addEventListener("submit", function(e) {
+                var partes = dataTexto.value.split("/");
+                if (partes.length !== 3 || partes[0].length !== 2 || partes[1].length !== 2 || partes[2].length !== 4 && partes[2].length !== 2) {
+                    e.preventDefault();
+                    alert("Digite a data no formato DD/MM/AAAA");
+                    return;
+                }
+                let ano = partes[2];
+                if(ano.length === 2) {
+                    ano = parseInt(ano) > 26 ? "19" + ano : "20" + ano;
+                }
+                dataHidden.value = ano + "-" + partes[1] + "-" + partes[0];
+            });
+        });
+    </script>
+</body>
+</html>
